@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Contact | Healthy Life</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="logo">HEALTHY LIFE</div>
+
+  <nav>
+    <a href="index.html#home">Home</a>
+    <a href="index.html#collections">Collections</a>
+    <a href="index.html#shop">Shop</a>
+    <a href="index.html#awareness">Awareness</a>
+    <a href="/contact">Contact</a>
+  </nav>
+</header>
+
+<section class="contact-section">
+
+  <!-- LEFT: FORM -->
+  <div class="contact-left">
+    <h2>Get In Touch</h2>
+
+    <form id="contactForm">
+
+      <label>NAME</label>
+      <input type="text" id="name" placeholder="Name" required>
+
+      <label>EMAIL*</label>
+      <input type="email" id="email" placeholder="Email" required>
+
+      <label>MESSAGE</label>
+      <textarea id="message" placeholder="Message" required></textarea>
+
+      <button class="btn" type="submit">SEND MESSAGE</button>
+
+    </form>
+  </div>
+
+  <!-- RIGHT: SUPPORT DETAILS -->
+  <div class="contact-right">
+    <h2>Support</h2>
+
+    <p><b>📞 Phone</b><br>+91 7780621268</p>
+    <hr>
+
+    <p><b>📧 Email</b><br>rajkumardasari77@gmail.com</p>
+    <hr>
+
+    <p><b>📍 Address</b><br>
+      Hyderabad, Telangana<br>
+      India
+    </p>
+  </div>
+
+</section>
+
+<!-- FORM SUBMIT LOGIC -->
+<script>
+document.getElementById("contactForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+
+  const payload = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    message: document.getElementById("message").value
+  };
+
+  // backend service – we will build this
+  await fetch("http://enquiry-service:4003/enquiry", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+
+  alert("Thank you! Your enquiry has been submitted.");
+});
+</script>
+
+</body>
+</html>
