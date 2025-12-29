@@ -19,32 +19,30 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # =========================
-      # FRONTEND SERVICE
-      # =========================
+      # FRONTEND
       - name: Build Frontend Image
         run: |
           docker build \
-            -t rkdasari0318/health-care-project/frontend-service:latest \
-            -t rkdasari0318/health-care-project/frontend-service:${{ github.sha }} \
+            -t rkdasari0318/health-care-project-frontend-service:latest \
+            -t rkdasari0318/health-care-project-frontend-service:${{ github.sha }} \
             1frontend
-
+      
       - name: Push Frontend Image
         run: |
-          docker push rkdasari0318/health-care-project/frontend-service:latest
-          docker push rkdasari0318/health-care-project/frontend-service:${{ github.sha }}
-
-      # =========================
-      # ENQUIRY SERVICE
-      # =========================
+          docker push rkdasari0318/health-care-project-frontend-service:latest
+          docker push rkdasari0318/health-care-project-frontend-service:${{ github.sha }}
+      
+      
+      # ENQUIRY
       - name: Build Enquiry Image
         run: |
           docker build \
-            -t rkdasari0318/health-care-project/enquiry-service:latest \
-            -t rkdasari0318/health-care-project/enquiry-service:${{ github.sha }} \
+            -t rkdasari0318/health-care-project-enquiry-service:latest \
+            -t rkdasari0318/health-care-project-enquiry-service:${{ github.sha }} \
             2enquiry-service
-
+      
       - name: Push Enquiry Image
         run: |
-          docker push rkdasari0318/health-care-project/enquiry-service:latest
-          docker push rkdasari0318/health-care-project/enquiry-service:${{ github.sha }}
+          docker push rkdasari0318/health-care-project-enquiry-service:latest
+          docker push rkdasari0318/health-care-project-enquiry-service:${{ github.sha }}
+
